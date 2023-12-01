@@ -1,0 +1,16 @@
+{
+  "name": "synchromesh",
+  "version": "0.0.1",
+  "description": "A pub-sub lib aiming for data subscription, differing, and synchronization between client and server side",
+  "keywords": [
+    "pub-sub",
+    "data differing",
+    "server-sent events"
+  ],
+  "author": "Alexander Zhao <alexandermzchiu@gmail.com>",
+  "license": "MIT",
+  "packageManager": "pnpm@8.11.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
