@@ -1,24 +1,11 @@
 {
-  "name": "@synchromesh/client",
+  "name": "@sse-sync/client",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "keywords": [],
   "author": "Alexander Zhao <alexandermzchiu@gmail.com>",
   "license": "MIT",
-  "scripts": {
-    "test": "vitest",
-    "build": "rollup --config"
-  },
-  "devDependencies": {
-    "@rollup/plugin-terser": "^0.4.4",
-    "@rollup/plugin-typescript": "^11.1.6",
-    "@types/node": "^20.11.1",
-    "@typescript-eslint/eslint-plugin": "^6.18.1",
-    "@typescript-eslint/parser": "^6.18.1",
-    "rollup": "^4.9.5",
-    "tslib": "^2.6.2",
-    "typescript": "^5.3.3",
-    "vitest": "^1.2.0"
-  }
+  "scripts": {},
+  "devDependencies": {}
 }
