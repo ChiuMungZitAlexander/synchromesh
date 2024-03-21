@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "module": "NodeNext",
-    "declaration": false,
+    "declaration": true,
+    "declarationDir": "./dist/dts",
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,

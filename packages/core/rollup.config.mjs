@@ -7,26 +7,14 @@ const rollupConfig = {
     {
       file: "dist/bundle.esm.js",
       format: "esm",
-      sourcemap: true,
-    },
-    {
-      file: "dist/bundle.esm.min.js",
-      format: "esm",
       plugins: [terser()],
-      sourcemap: true,
+      sourcemap: false,
     },
     {
       file: "dist/bundle.umd.js",
       format: "umd",
-      name: "vanilux",
-      sourcemap: true,
-    },
-    {
-      file: "dist/bundle.umd.min.js",
-      format: "umd",
-      name: "vanilux",
       plugins: [terser()],
-      sourcemap: true,
+      sourcemap: false,
     },
   ],
   plugins: [typescript()],

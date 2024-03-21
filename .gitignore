@@ -124,10 +124,6 @@ web_modules/
 .next
 out
 
-# Nuxt.js build / generate output
-.nuxt
-dist
-
 # Gatsby files
 .cache/
 # Comment in the public line in if your project uses Gatsby and not Next.js
@@ -173,5 +169,7 @@ dist
 
 # SvelteKit build / generate output
 .svelte-kit
+
+.rollup.cache
 
 # End of https://www.toptal.com/developers/gitignore/api/node,macos

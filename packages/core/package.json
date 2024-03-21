@@ -2,13 +2,15 @@
   "name": "@sse-sync/core",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
   "keywords": [],
   "author": "Alexander Zhao<alexandermzchiu@gmail.com>",
   "license": "MIT",
   "engines": {
     "node": "^20.10.0"
   },
+  "main": "dist/bundle.umd.js",
+  "module": "dist/bundle.esm.js",
+  "types": "dist/dts/index.d.ts",
   "scripts": {
     "build": "rollup --config"
   },
