@@ -1,24 +1,34 @@
 {
-  "name": "@synchromesh/core",
+  "name": "@sse-sync/core",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "keywords": [],
-  "author": "Alexander Zhao <alexandermzchiu@gmail.com>",
+  "author": "Alexander Zhao<alexandermzchiu@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": "^20.10.0"
+  },
   "scripts": {
-    "test": "vitest",
     "build": "rollup --config"
   },
   "devDependencies": {
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
-    "@types/node": "^20.11.1",
-    "@typescript-eslint/eslint-plugin": "^6.18.1",
-    "@typescript-eslint/parser": "^6.18.1",
-    "rollup": "^4.9.5",
+    "@types/lodash": "^4.17.0",
+    "@types/node": "^20.11.30",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "@typescript-eslint/parser": "^7.3.1",
+    "rollup": "^4.13.0",
     "tslib": "^2.6.2",
-    "typescript": "^5.3.3",
-    "vitest": "^1.2.0"
+    "typescript": "^5.4.3",
+    "vitest": "^1.4.0"
+  },
+  "dependencies": {
+    "better-sse": "^0.11.0",
+    "express": "^4.19.1",
+    "lodash": "^4.17.21",
+    "pino": "^8.19.0",
+    "pino-pretty": "^11.0.0"
   }
 }
