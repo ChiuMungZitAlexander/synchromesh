@@ -8,7 +8,7 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "target": "ES2015",
-    "sourceMap": true,
+    "sourceMap": false,
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true,
@@ -26,5 +26,6 @@
       "@/*": ["./src/*"]
     }
   },
+  "include": ["src"],
   "exclude": ["node_modules", "dist"]
 }

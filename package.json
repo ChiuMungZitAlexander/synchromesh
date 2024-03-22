@@ -5,14 +5,12 @@
   "keywords": [
     "pub-sub",
     "data differing",
+    "data sync",
     "server-sent events"
   ],
-  "author": "Alexander Zhao<alexandermzchiu@gmail.com>",
+  "author": "Alexander Zhao <alexandermzchiu@gmail.com>",
   "license": "MIT",
   "packageManager": "pnpm@8.15.5",
-  "engines": {
-    "node": "^20.10.0"
-  },
   "scripts": {
     "@client": "pnpm -F @sse-sync/client",
     "@core": "pnpm -F @sse-sync/core",

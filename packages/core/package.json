@@ -3,16 +3,18 @@
   "version": "0.0.1",
   "description": "",
   "keywords": [],
-  "author": "Alexander Zhao<alexandermzchiu@gmail.com>",
+  "author": "Alexander Zhao <alexandermzchiu@gmail.com>",
   "license": "MIT",
   "engines": {
-    "node": "^20.10.0"
+    "node": "^18.0.0",
+    "pnpm": "^8.0.0"
   },
-  "main": "dist/bundle.umd.js",
-  "module": "dist/bundle.esm.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/dts/index.d.ts",
   "scripts": {
-    "build": "rollup --config"
+    "build": "tsc",
+    "clean": "rm -rf dist"
   },
   "devDependencies": {
     "@rollup/plugin-terser": "^0.4.4",
@@ -22,13 +24,13 @@
     "@typescript-eslint/eslint-plugin": "^7.3.1",
     "@typescript-eslint/parser": "^7.3.1",
     "rollup": "^4.13.0",
+    "rollup-plugin-dts": "^6.1.0",
     "tslib": "^2.6.2",
     "typescript": "^5.4.3",
     "vitest": "^1.4.0"
   },
   "dependencies": {
     "better-sse": "^0.11.0",
-    "express": "^4.19.1",
     "lodash": "^4.17.21",
     "pino": "^8.19.0",
     "pino-pretty": "^11.0.0"
