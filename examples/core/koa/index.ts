@@ -1,12 +1,13 @@
-import express from "express";
+import Koa from "koa";
+import { PassThrough } from "node:stream";
 
 import { SyncManager } from "../../../packages/core/src/index";
 
-const PORT = process.env.PORT ?? 3041;
-const app = express();
+const PORT = process.env.PORT ?? 3042;
+const app = new Koa();
 
 const syncManager = new SyncManager({
-  name: "express",
+  name: "koa",
   fetcher: () =>
     new Promise((res) => {
       setTimeout(() => {
@@ -16,8 +17,13 @@ const syncManager = new SyncManager({
   syncIntervalMs: 2000,
 });
 
-app.get("/sse", (req, res) => {
-  syncManager.registerSession(req, res, "data");
+app.use(async (ctx, next) => {
+  if (ctx.path === "/sse") {
+    // Prevent Koa sending a response and closing the connection
+    ctx.respond = false;
+
+    syncManager.registerSession(ctx.req, ctx.res, "koa");
+  }
 });
 
 syncManager.watch();
