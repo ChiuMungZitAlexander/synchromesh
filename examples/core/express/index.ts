@@ -8,16 +8,18 @@ const app = express();
 const syncManager = new SyncManager({
   name: "express",
   fetcher: () =>
-    new Promise((res) => {
+    new Promise((res, rej) => {
       setTimeout(() => {
-        res(Math.random() > 0.5 ? 1 : 0);
+        Math.random() > 0.9
+          ? rej(new Error())
+          : res(Math.random() > 0.5 ? 1 : 0);
       }, 200);
     }),
   syncIntervalMs: 2000,
 });
 
 app.get("/sse", (req, res) => {
-  syncManager.registerSession(req, res, "data");
+  syncManager.registerSession(req, res, "express");
 });
 
 syncManager.watch();

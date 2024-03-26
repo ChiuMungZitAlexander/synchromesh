@@ -59,7 +59,7 @@ export class SyncManager {
           data: undefined,
         });
 
-        logger.info(`Successfully registered sync source ${name}`);
+        logger.info(`Successfully registered sync source {${name}}`);
       }
     );
   }
@@ -73,6 +73,8 @@ export class SyncManager {
 
     clearInterval(targetSyncSource.syncIntervalId);
     this._syncSource.delete(name);
+
+    logger.info(`Successfully unregistered sync source {${name}}`);
   }
 
   /**
@@ -86,7 +88,7 @@ export class SyncManager {
     const targetSyncSource = this._syncSource.get(name);
 
     if (!targetSyncSource) {
-      throw new Error(`Sync source ${name} is not registered.`);
+      throw new Error(`Sync source {${name}} is not registered.`);
     }
 
     const session = await createSession(req, res);
@@ -98,17 +100,23 @@ export class SyncManager {
    * If the sync source has already been watched, stop the previous watch and start a new one.
    */
   public watch() {
-    Array.from(this._syncSource.values()).forEach((_syncSource) => {
+    Array.from(this._syncSource.entries()).forEach(([name, _syncSource]) => {
       clearInterval(_syncSource.syncIntervalId);
 
       _syncSource.syncIntervalId = setInterval(async () => {
-        const nextData = await _syncSource.fetcher();
+        try {
+          const nextData = await _syncSource.fetcher();
 
-        const shouldUpdate = !isEqual(_syncSource.data, nextData);
+          const shouldUpdate = !isEqual(_syncSource.data, nextData);
 
-        if (shouldUpdate) {
-          _syncSource.data = nextData;
-          _syncSource.channel.broadcast(nextData);
+          if (shouldUpdate) {
+            _syncSource.data = nextData;
+            _syncSource.channel.broadcast(nextData);
+          }
+        } catch (error) {
+          logger.error(
+            `Failed to fetch sync source {${name}}. Details - ${error?.message}`
+          );
         }
       }, _syncSource.syncIntervalMs ?? DEFAULT_SYNC_INTERVAL_MS);
     });
