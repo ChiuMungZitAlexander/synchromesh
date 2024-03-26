@@ -1,8 +1,7 @@
-import { createSession } from "better-sse";
-import isEuqal from "lodash/isEqual";
+import { createSession, createChannel, type Channel } from "better-sse";
 import pino from "pino";
-
-import { IncomingMessage, ServerResponse } from "http";
+import isEqual from "lodash/isEqual";
+import type { IncomingMessage, ServerResponse } from "http";
 
 const logger = pino({
   transport: {
@@ -10,74 +9,118 @@ const logger = pino({
   },
 });
 
-type DataSource = {
-  syncIntervalId: NodeJS.Timeout;
-  data: unknown;
+const DEFAULT_SYNC_INTERVAL_MS = 1000;
+
+type SyncSource = {
+  fetcher: () => unknown | Promise<unknown>;
+  channel: Channel;
+  syncIntervalMs?: number;
+  syncIntervalId?: NodeJS.Timeout;
+  data?: unknown;
 };
 
-type DataSourceUnwatched = {
+type SyncSourceRegistry = {
   name: string;
-  fetcher: () => Promise<unknown>;
+  fetcher: () => unknown | Promise<unknown>;
   syncIntervalMs?: number;
-  req: IncomingMessage;
-  res: ServerResponse;
 };
 
 export class SyncManager {
-  private registeredDataSource: Map<string, DataSource> = new Map();
-
-  /**
-   *
-   * @param path path
-   */
-  public async registerDataSource({
-    name,
-    fetcher,
-    syncIntervalMs,
-    req,
-    res,
-  }: DataSourceUnwatched) {
-    const session = await createSession(req, res);
-
-    const _intervalId = setInterval(async () => {
-      const targetDataSource = this.registeredDataSource.get(name);
-
-      if (!targetDataSource) {
-        return;
-      }
-
-      const nextData = await fetcher();
-
-      const shouldUpdate = !isEuqal(targetDataSource.data, nextData);
-
-      if (shouldUpdate) {
-        this.registeredDataSource.set(name, {
-          ...targetDataSource,
-          data: nextData,
-        });
-
-        logger.info(`Successfully updated data source ${name}`);
-
-        session.push(nextData, name);
-      }
-    }, syncIntervalMs);
-
-    this.registeredDataSource.set(name, {
-      data: null,
-      syncIntervalId: _intervalId,
-    });
-
-    logger.info(`Successfully registered data source ${name}`);
+  constructor(syncSource?: SyncSourceRegistry | SyncSourceRegistry[]) {
+    if (syncSource) {
+      this.registerSyncSource(syncSource);
+    }
   }
 
-  public unregisterDataSource(name: string) {
-    const targetDataSource = this.registeredDataSource.get(name);
+  private _syncSource: Map<string, SyncSource> = new Map();
 
-    if (!targetDataSource) {
+  get syncSource() {
+    return this._syncSource;
+  }
+
+  public registerSyncSource(
+    syncSource: SyncSourceRegistry | SyncSourceRegistry[]
+  ) {
+    const syncSources = Array.isArray(syncSource) ? syncSource : [syncSource];
+
+    syncSources.forEach(
+      ({ name, fetcher, syncIntervalMs = DEFAULT_SYNC_INTERVAL_MS }) => {
+        if (this._syncSource.get(name)) {
+          throw new Error(`Sync source ${name} has already been registered.`);
+        }
+
+        const channel = createChannel();
+
+        this._syncSource.set(name, {
+          fetcher,
+          channel,
+          syncIntervalMs,
+          syncIntervalId: undefined,
+          data: undefined,
+        });
+
+        logger.info(`Successfully registered sync source ${name}`);
+      }
+    );
+  }
+
+  public unregisterSyncSource(name: string) {
+    const targetSyncSource = this._syncSource.get(name);
+
+    if (!targetSyncSource) {
       return;
     }
 
-    clearInterval(targetDataSource.syncIntervalId);
-    this.registeredDataSource.delete(name);
+    clearInterval(targetSyncSource.syncIntervalId);
+    this._syncSource.delete(name);
+  }
+
+  /**
+   * Register http session to channel for broadcasting.
+   */
+  public async registerSession(
+    req: IncomingMessage,
+    res: ServerResponse,
+    name: string
+  ) {
+    const targetSyncSource = this._syncSource.get(name);
+
+    if (!targetSyncSource) {
+      throw new Error(`Sync source ${name} is not registered.`);
+    }
+
+    const session = await createSession(req, res);
+    targetSyncSource.channel.register(session);
+  }
+
+  /**
+   * Start to watch all sync sources.
+   * If the sync source has already been watched, stop the previous watch and start a new one.
+   */
+  public watch() {
+    Array.from(this._syncSource.values()).forEach((_syncSource) => {
+      clearInterval(_syncSource.syncIntervalId);
+
+      _syncSource.syncIntervalId = setInterval(async () => {
+        const nextData = await _syncSource.fetcher();
+
+        const shouldUpdate = !isEqual(_syncSource.data, nextData);
+
+        if (shouldUpdate) {
+          _syncSource.data = nextData;
+          _syncSource.channel.broadcast(nextData);
+        }
+      }, _syncSource.syncIntervalMs ?? DEFAULT_SYNC_INTERVAL_MS);
+    });
+  }
+
+  /**
+   * Stop watching all sync sources.
+   */
+  public unwatch() {
+    Array.from(this._syncSource.values()).forEach((_syncSource) => {
+      clearInterval(_syncSource.syncIntervalId);
+      _syncSource.syncIntervalId = undefined;
+    });
   }
 }
