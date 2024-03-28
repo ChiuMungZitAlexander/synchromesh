@@ -1,6 +1,7 @@
 import { createSession, createChannel, type Channel } from "better-sse";
 import pino from "pino";
 import isEqual from "lodash/isEqual";
+import get from "lodash/get";
 import type { IncomingMessage, ServerResponse } from "http";
 
 const logger = pino({
@@ -11,17 +12,58 @@ const logger = pino({
 
 const DEFAULT_SYNC_INTERVAL_MS = 1000;
 
-type SyncSource = {
-  fetcher: () => unknown | Promise<unknown>;
+type SyncSource = Omit<SyncSourceRegistry, "name"> & {
+  /**
+   * The channel will broadcast if the data from sync source is updated.
+   * All sessions in the channel share the same sync function.
+   */
   channel: Channel;
-  syncIntervalMs?: number;
+
+  /**
+   * After starting the watch, the id of setInterval will stored.
+   * It will be undefined unless the sync source is being watched.
+   */
   syncIntervalId?: NodeJS.Timeout;
+
+  /**
+   * The current data of the sync source.
+   * It will be undefined unless the sync source is being watched and returns the latest data.
+   */
   data?: unknown;
 };
 
-type SyncSourceRegistry = {
+type SyncSourceRegistry<T = unknown> = {
+  /**
+   * The name of the sync source to be registered. Must be unique.
+   */
   name: string;
-  fetcher: () => unknown | Promise<unknown>;
+
+  /**
+   * The function to be called periodically by syncIntervalMs to fetch the data from data source.
+   *
+   * @returns Data to diff
+   */
+  fetcher: () => T | Promise<T>;
+
+  /**
+   * The diff key or diff function. Can also be optional.
+   *
+   * If it is not provided, the diff logic will be deep equal comparison between current data and next data.
+   * If diff is string, the comparison will be only between the target properties of current data and next data. The string can be multiple property accessors.
+   * @example
+   * { diff: "data.property" }
+   *
+   * All the comparisons above are deep equal comparison.
+   * @see {@link https://lodash.com/docs/4.17.15#isEqual}
+   *
+   * You may also provide your own diff function which returns a boolean to let sync manager know if it should do the sync.
+   *
+   */
+  diff?: string | ((currentData: T, nextData: T) => boolean);
+
+  /**
+   * The interval to fetch the latest data from data source. Default is 1000.
+   */
   syncIntervalMs?: number;
 };
 
@@ -32,19 +74,32 @@ export class SyncManager {
     }
   }
 
+  /**
+   * The map of registered sync sources. Registered sync sources never have duplicate names.
+   */
   private _syncSource: Map<string, SyncSource> = new Map();
 
+  /**
+   * List the raw map of registered sync sources.
+   */
   get syncSource() {
     return this._syncSource;
   }
 
+  /**
+   * Register a new sync source.
+   * If the sync source with the same name has already been registered, it will throw an error to avoid missing any sync sources.
+   * It accepts single sync source registry or an array of them.
+   *
+   * @param syncSource sync source options
+   */
   public registerSyncSource(
     syncSource: SyncSourceRegistry | SyncSourceRegistry[]
   ) {
     const syncSources = Array.isArray(syncSource) ? syncSource : [syncSource];
 
     syncSources.forEach(
-      ({ name, fetcher, syncIntervalMs = DEFAULT_SYNC_INTERVAL_MS }) => {
+      ({ name, fetcher, diff, syncIntervalMs = DEFAULT_SYNC_INTERVAL_MS }) => {
         if (this._syncSource.get(name)) {
           throw new Error(`Sync source ${name} has already been registered.`);
         }
@@ -54,6 +109,7 @@ export class SyncManager {
         this._syncSource.set(name, {
           fetcher,
           channel,
+          diff,
           syncIntervalMs,
           syncIntervalId: undefined,
           data: undefined,
@@ -64,6 +120,11 @@ export class SyncManager {
     );
   }
 
+  /**
+   * Unregister a sync source.
+   * If the sync source is not found, ignore it.
+   * Otherwise, the sync source will be removed and its sync function will be cleared.
+   */
   public unregisterSyncSource(name: string) {
     const targetSyncSource = this._syncSource.get(name);
 
@@ -79,6 +140,7 @@ export class SyncManager {
 
   /**
    * Register http session to channel for broadcasting.
+   * Should be called in http handlers.
    */
   public async registerSession(
     req: IncomingMessage,
@@ -107,9 +169,9 @@ export class SyncManager {
         try {
           const nextData = await _syncSource.fetcher();
 
-          const shouldUpdate = !isEqual(_syncSource.data, nextData);
+          const shouldUpdateFlag = shouldUpdate(_syncSource, nextData);
 
-          if (shouldUpdate) {
+          if (shouldUpdateFlag) {
             _syncSource.data = nextData;
             _syncSource.channel.broadcast(nextData);
           }
@@ -132,3 +194,15 @@ export class SyncManager {
     });
   }
 }
+
+const shouldUpdate = ({ data, diff }: SyncSource, nextData: unknown) => {
+  if (!diff) {
+    return !isEqual(data, nextData);
+  }
+
+  if (typeof diff === "string") {
+    return !isEqual(get(data, diff), get(nextData, diff));
+  }
+
+  return diff(data, nextData);
+};
