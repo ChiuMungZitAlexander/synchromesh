@@ -208,33 +208,6 @@
       "market_cap": "224.66B"
     },
     {
-      "symbol": "PYPL",
-      "company_name": "PayPal Holdings, Inc.",
-      "price": 204.21,
-      "change": -0.95,
-      "change_percent": -0.46,
-      "volume": 8103285,
-      "market_cap": "242.26B"
-    },
-    {
-      "symbol": "PEP",
-      "company_name": "PepsiCo, Inc.",
-      "price": 150.33,
-      "change": -0.07,
-      "change_percent": -0.05,
-      "volume": 4156112,
-      "market_cap": "209.72B"
-    },
-    {
-      "symbol": "ABT",
-      "company_name": "Abbott Laboratories",
-      "price": 127.78,
-      "change": 0.84,
-      "change_percent": 0.66,
-      "volume": 4981354,
-      "market_cap": "224.66B"
-    },
-    {
       "symbol": "CSCO",
       "company_name": "Cisco Systems, Inc.",
       "price": 59.77,
@@ -559,15 +532,6 @@
       "market_cap": "43.86B"
     },
     {
-      "symbol": "BDX",
-      "company_name": "Becton, Dickinson and Company",
-      "price": 267.88,
-      "change": -1.24,
-      "change_percent": -0.46,
-      "volume": 1036487,
-      "market_cap": "67.80B"
-    },
-    {
       "symbol": "CI",
       "company_name": "Cigna Corporation",
       "price": 245.34,
@@ -674,15 +638,6 @@
       "change_percent": 0.54,
       "volume": 2537529,
       "market_cap": "121.49B"
-    },
-    {
-      "symbol": "NOW",
-      "company_name": "ServiceNow, Inc.",
-      "price": 739.98,
-      "change": -2.44,
-      "change_percent": -0.33,
-      "volume": 1012983,
-      "market_cap": "141.27B"
     },
     {
       "symbol": "BSX",
