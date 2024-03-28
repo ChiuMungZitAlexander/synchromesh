@@ -1,2 +1,5 @@
 packages:
   - "packages/*"
+  - "examples/core/*"
+  - "examples/client/*"
+  - "examples/source-server"

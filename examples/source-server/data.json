@@ -1,0 +1,733 @@
+{
+  "stocks": [
+    {
+      "symbol": "AAPL",
+      "company_name": "Apple Inc.",
+      "price": 145.92,
+      "change": -1.08,
+      "change_percent": -0.74,
+      "volume": 58151362,
+      "market_cap": "2.42T"
+    },
+    {
+      "symbol": "MSFT",
+      "company_name": "Microsoft Corporation",
+      "price": 249.9,
+      "change": -0.57,
+      "change_percent": -0.23,
+      "volume": 25056637,
+      "market_cap": "1.88T"
+    },
+    {
+      "symbol": "GOOGL",
+      "company_name": "Alphabet Inc. (Google)",
+      "price": 2505.44,
+      "change": -9.56,
+      "change_percent": -0.38,
+      "volume": 1431526,
+      "market_cap": "1.68T"
+    },
+    {
+      "symbol": "AMZN",
+      "company_name": "Amazon.com Inc.",
+      "price": 3322.0,
+      "change": -12.34,
+      "change_percent": -0.37,
+      "volume": 2491311,
+      "market_cap": "1.67T"
+    },
+    {
+      "symbol": "FB",
+      "company_name": "Meta Platforms, Inc. (Facebook)",
+      "price": 219.55,
+      "change": -1.76,
+      "change_percent": -0.79,
+      "volume": 13972215,
+      "market_cap": "624.64B"
+    },
+    {
+      "symbol": "TSLA",
+      "company_name": "Tesla, Inc.",
+      "price": 1000.25,
+      "change": -17.89,
+      "change_percent": -1.76,
+      "volume": 17839166,
+      "market_cap": "978.91B"
+    },
+    {
+      "symbol": "BRK-A",
+      "company_name": "Berkshire Hathaway Inc. (Class A)",
+      "price": 432330.0,
+      "change": -1340.0,
+      "change_percent": -0.31,
+      "volume": 231,
+      "market_cap": "703.85B"
+    },
+    {
+      "symbol": "BRK-B",
+      "company_name": "Berkshire Hathaway Inc. (Class B)",
+      "price": 288.34,
+      "change": -0.65,
+      "change_percent": -0.22,
+      "volume": 3323232,
+      "market_cap": "703.85B"
+    },
+    {
+      "symbol": "JNJ",
+      "company_name": "Johnson & Johnson",
+      "price": 175.67,
+      "change": 0.78,
+      "change_percent": 0.45,
+      "volume": 5898786,
+      "market_cap": "463.45B"
+    },
+    {
+      "symbol": "V",
+      "company_name": "Visa Inc.",
+      "price": 221.43,
+      "change": -0.12,
+      "change_percent": -0.05,
+      "volume": 4052632,
+      "market_cap": "448.83B"
+    },
+    {
+      "symbol": "PG",
+      "company_name": "Procter & Gamble Company",
+      "price": 147.32,
+      "change": 0.18,
+      "change_percent": 0.12,
+      "volume": 4578798,
+      "market_cap": "365.21B"
+    },
+    {
+      "symbol": "NVDA",
+      "company_name": "NVIDIA Corporation",
+      "price": 293.76,
+      "change": -5.42,
+      "change_percent": -1.81,
+      "volume": 7345115,
+      "market_cap": "732.63B"
+    },
+    {
+      "symbol": "MA",
+      "company_name": "Mastercard Incorporated",
+      "price": 386.88,
+      "change": -2.31,
+      "change_percent": -0.59,
+      "volume": 2181312,
+      "market_cap": "383.86B"
+    },
+    {
+      "symbol": "HD",
+      "company_name": "The Home Depot, Inc.",
+      "price": 353.1,
+      "change": 0.45,
+      "change_percent": 0.13,
+      "volume": 2829316,
+      "market_cap": "369.46B"
+    },
+    {
+      "symbol": "UNH",
+      "company_name": "UnitedHealth Group Incorporated",
+      "price": 439.55,
+      "change": 1.78,
+      "change_percent": 0.41,
+      "volume": 2063115,
+      "market_cap": "409.02B"
+    },
+    {
+      "symbol": "BAC",
+      "company_name": "Bank of America Corporation",
+      "price": 45.65,
+      "change": 0.08,
+      "change_percent": 0.18,
+      "volume": 48726635,
+      "market_cap": "388.61B"
+    },
+    {
+      "symbol": "DIS",
+      "company_name": "The Walt Disney Company",
+      "price": 134.21,
+      "change": -0.88,
+      "change_percent": -0.65,
+      "volume": 8601315,
+      "market_cap": "242.34B"
+    },
+    {
+      "symbol": "KO",
+      "company_name": "The Coca-Cola Company",
+      "price": 57.89,
+      "change": -0.02,
+      "change_percent": -0.03,
+      "volume": 14032567,
+      "market_cap": "252.55B"
+    },
+    {
+      "symbol": "CMCSA",
+      "company_name": "Comcast Corporation",
+      "price": 49.44,
+      "change": -0.29,
+      "change_percent": -0.58,
+      "volume": 12084766,
+      "market_cap": "226.01B"
+    },
+    {
+      "symbol": "INTC",
+      "company_name": "Intel Corporation",
+      "price": 47.88,
+      "change": -0.45,
+      "change_percent": -0.93,
+      "volume": 25411236,
+      "market_cap": "201.55B"
+    },
+    {
+      "symbol": "PEP",
+      "company_name": "PepsiCo, Inc.",
+      "price": 150.33,
+      "change": -0.07,
+      "change_percent": -0.05,
+      "volume": 4156112,
+      "market_cap": "209.72B"
+    },
+    {
+      "symbol": "NFLX",
+      "company_name": "Netflix, Inc.",
+      "price": 397.3,
+      "change": 0.62,
+      "change_percent": 0.16,
+      "volume": 4523156,
+      "market_cap": "176.66B"
+    },
+    {
+      "symbol": "ABT",
+      "company_name": "Abbott Laboratories",
+      "price": 127.78,
+      "change": 0.84,
+      "change_percent": 0.66,
+      "volume": 4981354,
+      "market_cap": "224.66B"
+    },
+    {
+      "symbol": "PYPL",
+      "company_name": "PayPal Holdings, Inc.",
+      "price": 204.21,
+      "change": -0.95,
+      "change_percent": -0.46,
+      "volume": 8103285,
+      "market_cap": "242.26B"
+    },
+    {
+      "symbol": "PEP",
+      "company_name": "PepsiCo, Inc.",
+      "price": 150.33,
+      "change": -0.07,
+      "change_percent": -0.05,
+      "volume": 4156112,
+      "market_cap": "209.72B"
+    },
+    {
+      "symbol": "ABT",
+      "company_name": "Abbott Laboratories",
+      "price": 127.78,
+      "change": 0.84,
+      "change_percent": 0.66,
+      "volume": 4981354,
+      "market_cap": "224.66B"
+    },
+    {
+      "symbol": "CSCO",
+      "company_name": "Cisco Systems, Inc.",
+      "price": 59.77,
+      "change": -0.28,
+      "change_percent": -0.47,
+      "volume": 16537892,
+      "market_cap": "247.71B"
+    },
+    {
+      "symbol": "PFE",
+      "company_name": "Pfizer Inc.",
+      "price": 48.2,
+      "change": -0.13,
+      "change_percent": -0.27,
+      "volume": 28188945,
+      "market_cap": "273.24B"
+    },
+    {
+      "symbol": "CRM",
+      "company_name": "salesforce.com, inc.",
+      "price": 238.13,
+      "change": 0.25,
+      "change_percent": 0.1,
+      "volume": 4472595,
+      "market_cap": "222.23B"
+    },
+    {
+      "symbol": "ABBV",
+      "company_name": "AbbVie Inc.",
+      "price": 127.53,
+      "change": 0.19,
+      "change_percent": 0.15,
+      "volume": 6102162,
+      "market_cap": "225.14B"
+    },
+    {
+      "symbol": "ADBE",
+      "company_name": "Adobe Inc.",
+      "price": 491.88,
+      "change": -5.72,
+      "change_percent": -1.15,
+      "volume": 2678520,
+      "market_cap": "232.85B"
+    },
+    {
+      "symbol": "NKE",
+      "company_name": "NIKE, Inc.",
+      "price": 141.52,
+      "change": 0.88,
+      "change_percent": 0.63,
+      "volume": 4202958,
+      "market_cap": "220.98B"
+    },
+    {
+      "symbol": "XOM",
+      "company_name": "Exxon Mobil Corporation",
+      "price": 61.27,
+      "change": 0.3,
+      "change_percent": 0.49,
+      "volume": 16415588,
+      "market_cap": "259.00B"
+    },
+    {
+      "symbol": "T",
+      "company_name": "AT&T Inc.",
+      "price": 24.63,
+      "change": 0.12,
+      "change_percent": 0.49,
+      "volume": 39957952,
+      "market_cap": "176.19B"
+    },
+    {
+      "symbol": "MRK",
+      "company_name": "Merck & Co., Inc.",
+      "price": 73.12,
+      "change": -0.28,
+      "change_percent": -0.38,
+      "volume": 9263845,
+      "market_cap": "184.63B"
+    },
+    {
+      "symbol": "C",
+      "company_name": "Citigroup Inc.",
+      "price": 64.5,
+      "change": -0.25,
+      "change_percent": -0.39,
+      "volume": 17251631,
+      "market_cap": "129.82B"
+    },
+    {
+      "symbol": "ORCL",
+      "company_name": "Oracle Corporation",
+      "price": 81.32,
+      "change": -0.44,
+      "change_percent": -0.54,
+      "volume": 7145234,
+      "market_cap": "230.81B"
+    },
+    {
+      "symbol": "TMO",
+      "company_name": "Thermo Fisher Scientific Inc.",
+      "price": 529.09,
+      "change": -3.87,
+      "change_percent": -0.73,
+      "volume": 1324164,
+      "market_cap": "208.42B"
+    },
+    {
+      "symbol": "PM",
+      "company_name": "Philip Morris International Inc.",
+      "price": 96.45,
+      "change": 0.11,
+      "change_percent": 0.11,
+      "volume": 4446787,
+      "market_cap": "147.51B"
+    },
+    {
+      "symbol": "NVS",
+      "company_name": "Novartis AG",
+      "price": 84.25,
+      "change": 0.07,
+      "change_percent": 0.08,
+      "volume": 2754083,
+      "market_cap": "197.17B"
+    },
+    {
+      "symbol": "UNP",
+      "company_name": "Union Pacific Corporation",
+      "price": 218.62,
+      "change": -2.78,
+      "change_percent": -1.25,
+      "volume": 1833112,
+      "market_cap": "147.25B"
+    },
+    {
+      "symbol": "ACN",
+      "company_name": "Accenture plc",
+      "price": 376.05,
+      "change": -1.91,
+      "change_percent": -0.5,
+      "volume": 1485175,
+      "market_cap": "240.32B"
+    },
+    {
+      "symbol": "PYPL",
+      "company_name": "PayPal Holdings, Inc.",
+      "price": 204.21,
+      "change": -0.95,
+      "change_percent": -0.46,
+      "volume": 8103285,
+      "market_cap": "242.26B"
+    },
+    {
+      "symbol": "IBM",
+      "company_name": "International Business Machines Corporation",
+      "price": 123.45,
+      "change": -0.68,
+      "change_percent": -0.55,
+      "volume": 6108324,
+      "market_cap": "110.91B"
+    },
+    {
+      "symbol": "MO",
+      "company_name": "Altria Group, Inc.",
+      "price": 53.97,
+      "change": 0.17,
+      "change_percent": 0.32,
+      "volume": 6829462,
+      "market_cap": "100.26B"
+    },
+    {
+      "symbol": "MDT",
+      "company_name": "Medtronic plc",
+      "price": 118.76,
+      "change": 0.45,
+      "change_percent": 0.38,
+      "volume": 3263158,
+      "market_cap": "158.66B"
+    },
+    {
+      "symbol": "SLB",
+      "company_name": "Schlumberger Limited",
+      "price": 32.18,
+      "change": 0.29,
+      "change_percent": 0.91,
+      "volume": 16837491,
+      "market_cap": "44.55B"
+    },
+    {
+      "symbol": "LMT",
+      "company_name": "Lockheed Martin Corporation",
+      "price": 393.77,
+      "change": -0.88,
+      "change_percent": -0.22,
+      "volume": 979157,
+      "market_cap": "107.51B"
+    },
+    {
+      "symbol": "NOW",
+      "company_name": "ServiceNow, Inc.",
+      "price": 739.98,
+      "change": -2.44,
+      "change_percent": -0.33,
+      "volume": 1012983,
+      "market_cap": "141.27B"
+    },
+    {
+      "symbol": "TXN",
+      "company_name": "Texas Instruments Incorporated",
+      "price": 194.43,
+      "change": -1.42,
+      "change_percent": -0.72,
+      "volume": 2936214,
+      "market_cap": "176.90B"
+    },
+    {
+      "symbol": "MU",
+      "company_name": "Micron Technology, Inc.",
+      "price": 75.28,
+      "change": -1.21,
+      "change_percent": -1.58,
+      "volume": 17735622,
+      "market_cap": "82.50B"
+    },
+    {
+      "symbol": "MMM",
+      "company_name": "3M Company",
+      "price": 153.19,
+      "change": -1.18,
+      "change_percent": -0.76,
+      "volume": 2498521,
+      "market_cap": "88.24B"
+    },
+    {
+      "symbol": "ADI",
+      "company_name": "Analog Devices, Inc.",
+      "price": 153.35,
+      "change": -0.75,
+      "change_percent": -0.49,
+      "volume": 2687621,
+      "market_cap": "57.07B"
+    },
+    {
+      "symbol": "COST",
+      "company_name": "Costco Wholesale Corporation",
+      "price": 539.24,
+      "change": -3.19,
+      "change_percent": -0.59,
+      "volume": 1123151,
+      "market_cap": "239.54B"
+    },
+    {
+      "symbol": "AXP",
+      "company_name": "American Express Company",
+      "price": 193.64,
+      "change": 1.02,
+      "change_percent": 0.53,
+      "volume": 2702259,
+      "market_cap": "152.65B"
+    },
+    {
+      "symbol": "LOW",
+      "company_name": "Lowe's Companies, Inc.",
+      "price": 220.13,
+      "change": 1.17,
+      "change_percent": 0.53,
+      "volume": 3076552,
+      "market_cap": "148.42B"
+    },
+    {
+      "symbol": "ADP",
+      "company_name": "Automatic Data Processing, Inc.",
+      "price": 228.77,
+      "change": -2.42,
+      "change_percent": -1.05,
+      "volume": 1035682,
+      "market_cap": "97.36B"
+    },
+    {
+      "symbol": "BKNG",
+      "company_name": "Booking Holdings Inc.",
+      "price": 2350.32,
+      "change": -4.78,
+      "change_percent": -0.2,
+      "volume": 456216,
+      "market_cap": "94.82B"
+    },
+    {
+      "symbol": "AMD",
+      "company_name": "Advanced Micro Devices, Inc.",
+      "price": 120.56,
+      "change": -2.31,
+      "change_percent": -1.88,
+      "volume": 26987153,
+      "market_cap": "141.96B"
+    },
+    {
+      "symbol": "QCOM",
+      "company_name": "QUALCOMM Incorporated",
+      "price": 153.44,
+      "change": -1.12,
+      "change_percent": -0.72,
+      "volume": 7783447,
+      "market_cap": "173.85B"
+    },
+    {
+      "symbol": "BMY",
+      "company_name": "Bristol-Myers Squibb Company",
+      "price": 64.05,
+      "change": -0.47,
+      "change_percent": -0.73,
+      "volume": 10132568,
+      "market_cap": "146.05B"
+    },
+    {
+      "symbol": "BK",
+      "company_name": "The Bank of New York Mellon Corporation",
+      "price": 51.22,
+      "change": -0.12,
+      "change_percent": -0.23,
+      "volume": 5258215,
+      "market_cap": "43.86B"
+    },
+    {
+      "symbol": "BDX",
+      "company_name": "Becton, Dickinson and Company",
+      "price": 267.88,
+      "change": -1.24,
+      "change_percent": -0.46,
+      "volume": 1036487,
+      "market_cap": "67.80B"
+    },
+    {
+      "symbol": "CI",
+      "company_name": "Cigna Corporation",
+      "price": 245.34,
+      "change": 0.45,
+      "change_percent": 0.18,
+      "volume": 1742537,
+      "market_cap": "72.47B"
+    },
+    {
+      "symbol": "UPS",
+      "company_name": "United Parcel Service, Inc.",
+      "price": 205.09,
+      "change": -1.65,
+      "change_percent": -0.8,
+      "volume": 2508459,
+      "market_cap": "179.16B"
+    },
+    {
+      "symbol": "GILD",
+      "company_name": "Gilead Sciences, Inc.",
+      "price": 65.32,
+      "change": -0.42,
+      "change_percent": -0.64,
+      "volume": 4962546,
+      "market_cap": "81.55B"
+    },
+    {
+      "symbol": "CSX",
+      "company_name": "CSX Corporation",
+      "price": 101.76,
+      "change": -0.32,
+      "change_percent": -0.31,
+      "volume": 3124585,
+      "market_cap": "82.39B"
+    },
+    {
+      "symbol": "SO",
+      "company_name": "The Southern Company",
+      "price": 64.35,
+      "change": -0.06,
+      "change_percent": -0.09,
+      "volume": 3612119,
+      "market_cap": "67.15B"
+    },
+    {
+      "symbol": "USB",
+      "company_name": "U.S. Bancorp",
+      "price": 58.28,
+      "change": -0.28,
+      "change_percent": -0.48,
+      "volume": 6642859,
+      "market_cap": "88.39B"
+    },
+    {
+      "symbol": "CHTR",
+      "company_name": "Charter Communications, Inc.",
+      "price": 667.79,
+      "change": -2.39,
+      "change_percent": -0.36,
+      "volume": 672238,
+      "market_cap": "137.88B"
+    },
+    {
+      "symbol": "NEE",
+      "company_name": "NextEra Energy, Inc.",
+      "price": 85.52,
+      "change": -0.76,
+      "change_percent": -0.88,
+      "volume": 5409535,
+      "market_cap": "177.02B"
+    },
+    {
+      "symbol": "BDX",
+      "company_name": "Becton, Dickinson and Company",
+      "price": 267.88,
+      "change": -1.24,
+      "change_percent": -0.46,
+      "volume": 1036487,
+      "market_cap": "67.80B"
+    },
+    {
+      "symbol": "ECL",
+      "company_name": "Ecolab Inc.",
+      "price": 191.09,
+      "change": -0.31,
+      "change_percent": -0.16,
+      "volume": 942334,
+      "market_cap": "55.31B"
+    },
+    {
+      "symbol": "BLK",
+      "company_name": "BlackRock, Inc.",
+      "price": 786.54,
+      "change": -3.12,
+      "change_percent": -0.4,
+      "volume": 464826,
+      "market_cap": "120.79B"
+    },
+    {
+      "symbol": "AMGN",
+      "company_name": "Amgen Inc.",
+      "price": 208.76,
+      "change": 1.13,
+      "change_percent": 0.54,
+      "volume": 2537529,
+      "market_cap": "121.49B"
+    },
+    {
+      "symbol": "NOW",
+      "company_name": "ServiceNow, Inc.",
+      "price": 739.98,
+      "change": -2.44,
+      "change_percent": -0.33,
+      "volume": 1012983,
+      "market_cap": "141.27B"
+    },
+    {
+      "symbol": "BSX",
+      "company_name": "Boston Scientific Corporation",
+      "price": 49.05,
+      "change": -0.14,
+      "change_percent": -0.28,
+      "volume": 12438552,
+      "market_cap": "70.62B"
+    },
+    {
+      "symbol": "ICE",
+      "company_name": "Intercontinental Exchange, Inc.",
+      "price": 126.88,
+      "change": -1.05,
+      "change_percent": -0.82,
+      "volume": 1708226,
+      "market_cap": "70.58B"
+    },
+    {
+      "symbol": "GPN",
+      "company_name": "Global Payments Inc.",
+      "price": 206.12,
+      "change": -2.09,
+      "change_percent": -1.0,
+      "volume": 837241,
+      "market_cap": "64.79B"
+    },
+    {
+      "symbol": "LHX",
+      "company_name": "L3Harris Technologies, Inc.",
+      "price": 235.81,
+      "change": -0.94,
+      "change_percent": -0.4,
+      "volume": 845112,
+      "market_cap": "51.31B"
+    },
+    {
+      "symbol": "SHW",
+      "company_name": "The Sherwin-Williams Company",
+      "price": 273.41,
+      "change": -0.36,
+      "change_percent": -0.13,
+      "volume": 554295,
+      "market_cap": "65.14B"
+    }
+  ]
+}
