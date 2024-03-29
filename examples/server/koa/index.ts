@@ -1,7 +1,7 @@
 import Koa from "koa";
 import { PassThrough } from "node:stream";
 
-import { SyncManager } from "../../../packages/core/src/index";
+import { SyncManager } from "../../../packages/server/src/index";
 
 const PORT = process.env.PORT ?? 3042;
 const app = new Koa();

@@ -1,6 +1,6 @@
 import express from "express";
 
-import { SyncManager } from "../../../packages/core/src/index";
+import { SyncManager } from "../../../packages/server/src/index";
 
 const PORT = process.env.PORT ?? 3041;
 const app = express();
