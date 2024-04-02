@@ -6,8 +6,5 @@
   "keywords": [],
   "author": "Alexander Zhao <alexandermzchiu@gmail.com>",
   "license": "MIT",
-  "scripts": {},
-  "dependencies": {
-    "@sse-sync/core": "workspace:*"
-  }
+  "scripts": {}
 }
