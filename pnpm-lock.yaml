@@ -52,7 +52,7 @@ importers:
         specifier: ^5.2.6
         version: 5.2.6(@types/node@20.11.30)
 
-  examples/core/express:
+  examples/server/express:
     dependencies:
       express:
         specifier: ^4.19.2
@@ -65,7 +65,7 @@ importers:
         specifier: ^5.4.3
         version: 5.4.3
 
-  examples/core/koa:
+  examples/server/koa:
     dependencies:
       koa:
         specifier: ^2.15.2
@@ -97,13 +97,9 @@ importers:
         specifier: ^5.4.3
         version: 5.4.3
 
-  packages/client:
-    dependencies:
-      '@sse-sync/core':
-        specifier: workspace:*
-        version: link:../core
+  packages/client: {}
 
-  packages/core:
+  packages/server:
     dependencies:
       better-sse:
         specifier: ^0.11.0
