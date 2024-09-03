@@ -10,11 +10,11 @@
   ],
   "author": "Alexander Zhao <alexandermzchiu@gmail.com>",
   "license": "MIT",
-  "packageManager": "pnpm@9.12.3",
+  "packageManager": "pnpm@9.15.0",
   "scripts": {},
   "devDependencies": {
-    "@types/node": "^20.11.30",
+    "@types/node": "^22.10.1",
     "tsx": "^4.19.2",
-    "typescript": "^5.4.3"
+    "typescript": "^5.7.2"
   }
 }
